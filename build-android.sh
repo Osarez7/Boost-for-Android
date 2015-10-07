@@ -262,13 +262,18 @@ case "$NDK_RN" in
 		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
 		TOOLSET=gcc-androidR8e
 		;;
+	"10e (64-bit)"|"10e-rc4 (64-bit)")
+		TOOLCHAIN=${TOOLCHAIN:-x86_64-4.9}
+		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/x86_64-linux-android-g++
+		TOOLSET=gcc-androidR10e
+		;;
 	*)
 		echo "Undefined or not supported Android NDK version!"
 		exit 1
 esac
 
 if [ -n "${AndroidSourcesDetected}" ]; then # Overwrite CXXPATH if we are building from Android sources
-    CXXPATH="${ANDROID_TOOLCHAIN}/arm-linux-androideabi-g++"
+    CXXPATH="${ANDROID_TOOLCHAIN}/x86_64-linux-android-g++"
 fi
 
 echo Building with TOOLSET=$TOOLSET CXXPATH=$CXXPATH CXXFLAGS=$CXXFLAGS | tee $PROGDIR/build.log
