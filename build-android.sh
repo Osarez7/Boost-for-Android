@@ -70,16 +70,16 @@ select_toolchain () {
 
 CLEAN=no
 register_option "--clean"    do_clean     "Delete all previously downloaded and built files, then exit."
-do_clean () {	CLEAN=yes; }
+do_clean () {   CLEAN=yes; }
 
 DOWNLOAD=no
 register_option "--download" do_download  "Only download required files and clean up previus build. No build will be performed."
 
 do_download ()
 {
-	DOWNLOAD=yes
-	# Clean previus stuff too!
-	CLEAN=yes
+    DOWNLOAD=yes
+    # Clean previus stuff too!
+    CLEAN=yes
 }
 
 #LIBRARIES=--with-libraries=date_time,filesystem,program_options,regex,signals,system,thread,iostreams,locale
@@ -90,7 +90,7 @@ do_with_libraries () {
 }
 
 register_option "--without-libraries=<list>" do_without_libraries "Comma separated list of libraries to exclude from the build."
-do_without_libraries () {	LIBRARIES="--without-libraries=$1"; }
+do_without_libraries () {   LIBRARIES="--without-libraries=$1"; }
 do_without_libraries () { 
   for lib in $(echo $1 | tr ',' '\n') ; do LIBRARIES="--without-$lib ${LIBRARIES}"; done 
 }
@@ -123,18 +123,18 @@ BUILD_DIR="./build/"
 # -----------------------
 
 if [ $CLEAN = yes ] ; then
-	echo "Cleaning: $BUILD_DIR"
-	rm -f -r $PROGDIR/$BUILD_DIR
-	
-	echo "Cleaning: $BOOST_DIR"
-	rm -f -r $PROGDIR/$BOOST_DIR
-	
-	echo "Cleaning: $BOOST_TAR"
-	rm -f $PROGDIR/$BOOST_TAR
+    echo "Cleaning: $BUILD_DIR"
+    rm -f -r $PROGDIR/$BUILD_DIR
+    
+    echo "Cleaning: $BOOST_DIR"
+    rm -f -r $PROGDIR/$BOOST_DIR
+    
+    echo "Cleaning: $BOOST_TAR"
+    rm -f $PROGDIR/$BOOST_TAR
 
-	echo "Cleaning: logs"
-	rm -f -r logs
-	rm -f build.log
+    echo "Cleaning: logs"
+    rm -f -r logs
+    rm -f build.log
 
   [ "$DOWNLOAD" = "yes" ] || exit 0
 fi
@@ -146,13 +146,13 @@ fi
 # this code.
 
 if [ -d "$PROGDIR/$BOOST_DIR" ]; then
-	echo "Cleaning: $BOOST_DIR"
-	rm -f -r $PROGDIR/$BOOST_DIR
+    echo "Cleaning: $BOOST_DIR"
+    rm -f -r $PROGDIR/$BOOST_DIR
 fi
 
 if [ -d "$PROGDIR/$BUILD_DIR" ]; then
-	echo "Cleaning: $BUILD_DIR"
-	rm -f -r $PROGDIR/$BUILD_DIR
+    echo "Cleaning: $BUILD_DIR"
+    rm -f -r $PROGDIR/$BUILD_DIR
 fi
 
 
@@ -217,58 +217,63 @@ fi
 echo "Detected Android NDK version $NDK_RN"
 
 case "$NDK_RN" in
-	4*)
-		TOOLCHAIN=${TOOLCHAIN:-arm-eabi-4.4.0}
-		CXXPATH=$AndroidNDKRoot/build/prebuilt/$PlatformOS-x86/${TOOLCHAIN}/bin/arm-eabi-g++
-		TOOLSET=gcc-androidR4
-		;;
-	5*)
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.4.3}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR5
-		;;
-	7-crystax-5.beta3)
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6.3}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR7crystax5beta3
-		;;
-	8)
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.4.3}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR8
-		;;
-	8b|8c|8d)
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR8b
-		;;
-	8e|9|9b|9c|9d)
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR8e
-		;;
-	"8e (64-bit)")
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR8e
-		;;
-	"9 (64-bit)"|"9b (64-bit)"|"9c (64-bit)"|"9d (64-bit)")
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR8e
-		;;
-	"10 (64-bit)"|"10b (64-bit)"|"10c (64-bit)"|"10d (64-bit)")
-		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
-		CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
-		TOOLSET=gcc-androidR8e
-		;;
-	*)
-		echo "Undefined or not supported Android NDK version!"
-		exit 1
+    4*)
+        TOOLCHAIN=${TOOLCHAIN:-arm-eabi-4.4.0}
+        CXXPATH=$AndroidNDKRoot/build/prebuilt/$PlatformOS-x86/${TOOLCHAIN}/bin/arm-eabi-g++
+        TOOLSET=gcc-androidR4
+        ;;
+    5*)
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.4.3}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR5
+        ;;
+    7-crystax-5.beta3)
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6.3}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR7crystax5beta3
+        ;;
+    8)
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.4.3}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR8
+        ;;
+    8b|8c|8d)
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR8b
+        ;;
+    8e|9|9b|9c|9d)
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/$PlatformOS-x86/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR8e
+        ;;
+    "8e (64-bit)")
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR8e
+        ;;
+    "9 (64-bit)"|"9b (64-bit)"|"9c (64-bit)"|"9d (64-bit)")
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR8e
+        ;;
+    "10 (64-bit)"|"10b (64-bit)"|"10c (64-bit)"|"10d (64-bit)")
+        TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
+        TOOLSET=gcc-androidR8e
+        ;;
+    "10e (64-bit)"|"10e-rc4 (64-bit)")
+        TOOLCHAIN=${TOOLCHAIN:-x86-4.9}
+        CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/i686-linux-android-g++
+        TOOLSET=gcc-androidR10e
+        ;;
+    *)
+        echo "Undefined or not supported Android NDK version!"
+        exit 1
 esac
 
 if [ -n "${AndroidSourcesDetected}" ]; then # Overwrite CXXPATH if we are building from Android sources
-    CXXPATH="${ANDROID_TOOLCHAIN}/arm-linux-androideabi-g++"
+    CXXPATH="${ANDROID_TOOLCHAIN}/x86-linux-android-g++"
 fi
 
 echo Building with TOOLSET=$TOOLSET CXXPATH=$CXXPATH CXXFLAGS=$CXXFLAGS | tee $PROGDIR/build.log
@@ -276,8 +281,8 @@ echo Building with TOOLSET=$TOOLSET CXXPATH=$CXXPATH CXXFLAGS=$CXXFLAGS | tee $P
 # Check if the ndk is valid or not
 if [ ! -f $CXXPATH ]
 then
-	echo "Cannot find C++ compiler at: $CXXPATH"
-	exit 1
+    echo "Cannot find C++ compiler at: $CXXPATH"
+    exit 1
 fi
 
 # -----------------------
@@ -287,30 +292,30 @@ fi
 # Downalod and unzip boost in a temporal folder and
 if [ ! -f $BOOST_TAR ]
 then
-	echo "Downloading boost ${BOOST_VER1}.${BOOST_VER2}.${BOOST_VER3} please wait..."
-	prepare_download
-	download_file $BOOST_DOWNLOAD_LINK $PROGDIR/$BOOST_TAR
+    echo "Downloading boost ${BOOST_VER1}.${BOOST_VER2}.${BOOST_VER3} please wait..."
+    prepare_download
+    download_file $BOOST_DOWNLOAD_LINK $PROGDIR/$BOOST_TAR
 fi
 
 if [ ! -f $PROGDIR/$BOOST_TAR ]
 then
-	echo "Failed to download boost! Please download boost ${BOOST_VER1}.${BOOST_VER2}.${BOOST_VER3} manually\nand save it in this directory as $BOOST_TAR"
-	exit 1
+    echo "Failed to download boost! Please download boost ${BOOST_VER1}.${BOOST_VER2}.${BOOST_VER3} manually\nand save it in this directory as $BOOST_TAR"
+    exit 1
 fi
 
 if [ ! -d $PROGDIR/$BOOST_DIR ]
 then
-	echo "Unpacking boost"
-	if [ "$OPTION_PROGRESS" = "yes" ] ; then
-		pv $PROGDIR/$BOOST_TAR | tar xjf - -C $PROGDIR
-	else
-		tar xjf $PROGDIR/$BOOST_TAR
-	fi
+    echo "Unpacking boost"
+    if [ "$OPTION_PROGRESS" = "yes" ] ; then
+        pv $PROGDIR/$BOOST_TAR | tar xjf - -C $PROGDIR
+    else
+        tar xjf $PROGDIR/$BOOST_TAR
+    fi
 fi
 
 if [ $DOWNLOAD = yes ] ; then
-	echo "All required files has been downloaded and unpacked!"
-	exit 0
+    echo "All required files has been downloaded and unpacked!"
+    exit 0
 fi
 
 # ---------
@@ -332,8 +337,8 @@ then
 
 
   if [ $? != 0 ] ; then
-  	dump "ERROR: Could not perform boostrap! See $TMPLOG for more info."
-  	exit 1
+    dump "ERROR: Could not perform boostrap! See $TMPLOG for more info."
+    exit 1
   fi
   cd $PROGDIR
   

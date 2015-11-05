@@ -1,4 +1,16 @@
 # Boost for Android
+[x86] Boost 1.55 NDK and Android NDK version 10e-rc4/android-21
+
+`./build-android.sh $ANDROID_NDK_HOME --boost=1.55.0 --with-libraries=date_time,math,random,thread,system`
+
+Others:
+
+copy a page.h and page_32.h from android-19/arch-x86/.. to $ANDROID_NDK_HOME/platform/android-21/arch-x86/usr/include/asm/
+
+Not sure why it didn't contain page.h in x86 asm
+
+
+
 Boost for android is a set of tools to compile the main part of the [Boost C++ Libraries](http://www.boost.org/) for the Android platform.
 
 Currently supported boost versions are 1.45.0, 1.48.0, 1.49.0 and 1.53.0. Boost 1.54.0 and 1.55.0 shall be considered experimental.
